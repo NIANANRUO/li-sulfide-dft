@@ -1,0 +1,7 @@
+.next/
+out/
+node_modules/
+.tools/
+*.log
+*.tsbuildinfo
+.env*.local
