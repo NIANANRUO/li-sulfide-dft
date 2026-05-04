@@ -1,1 +1,1 @@
-# Li_S-vasp-
+# li-sulfide-dft
