@@ -2,6 +2,7 @@
 out/
 node_modules/
 .tools/
+.deploy/
 *.log
 *.tsbuildinfo
 .env*.local
