@@ -66,7 +66,7 @@ function DashboardHome({ tab, onSelectModule }: { tab: string; onSelectModule: (
   }
   if (tab === "机理示意") return <BatterySchematic />;
   return (
-    <div className="grid h-full min-h-0 grid-rows-[1fr_auto] gap-3">
+    <div className="grid gap-3">
       <ModuleButtonGrid onSelectModule={onSelectModule} />
       <PipelineStrip />
     </div>
@@ -76,21 +76,21 @@ function DashboardHome({ tab, onSelectModule }: { tab: string; onSelectModule: (
 function ModuleButtonGrid({ onSelectModule }: { onSelectModule: (id: DashboardModuleId) => void }) {
   const cards = dashboardModules.filter((item) => item.id !== "home");
   return (
-    <div className="grid min-h-0 gap-3 lg:grid-cols-3">
+    <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))]">
       {cards.map((item) => {
         const Icon = item.icon;
         return (
           <button
             key={item.id}
             onClick={() => onSelectModule(item.id)}
-            className="group min-h-0 rounded-xl border border-[#31547f] bg-gradient-to-br from-[#0b1930]/95 to-[#071225]/82 p-3 text-left transition hover:border-cyan hover:shadow-[0_0_32px_rgba(56,189,248,.34)]"
+            className="group min-h-[8.5rem] rounded-xl border border-[#31547f] bg-gradient-to-br from-[#0b1930]/95 to-[#071225]/82 p-3 text-left transition hover:border-cyan hover:shadow-[0_0_32px_rgba(56,189,248,.34)]"
           >
             <div className="flex h-full items-center gap-3">
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-blue-500/10 text-cyan shadow-[inset_0_0_22px_rgba(56,189,248,.12),0_0_20px_rgba(56,189,248,.14)]">
                 <Icon size={26} strokeWidth={1.8} />
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-base font-bold text-white">{item.title}</span>
+                <span className="block text-base font-bold leading-5 text-white">{item.title}</span>
                 <span className="mt-1 block text-xs leading-5 text-slate-300 line-clamp-2">{item.description}</span>
               </span>
             </div>
