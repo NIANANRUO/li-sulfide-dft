@@ -26,19 +26,19 @@ export function DashboardShell({ initialModule = "home", initialTabIndex }: { in
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-[#020814] text-slate-100">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(37,99,235,.22),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(126,34,206,.18),transparent_28rem),linear-gradient(135deg,#020814_0%,#061226_48%,#020617_100%)]" />
-      <div className="absolute inset-0 science-grid opacity-45" />
-      <div className="relative flex h-full flex-col">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#020814] text-slate-100">
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(37,99,235,.22),transparent_28rem),radial-gradient(circle_at_82%_12%,rgba(126,34,206,.18),transparent_28rem),linear-gradient(135deg,#020814_0%,#061226_48%,#020617_100%)]" />
+      <div className="fixed inset-0 science-grid opacity-45" />
+      <div className="relative flex min-h-screen flex-col">
         <TopCommandBar onMenu={() => setMobileNavOpen((value) => !value)} mobileNavOpen={mobileNavOpen} />
-        <div className="flex min-h-0 flex-1">
+        <div className="flex flex-1">
           <SideNavigation active={activeModule} onSelect={selectModule} mobileOpen={mobileNavOpen} />
         {mobileNavOpen && <div className="fixed inset-0 z-30 bg-black/60 lg:hidden" onClick={() => setMobileNavOpen(false)} />}
           <main className="flex min-w-0 flex-1 flex-col">
           {showTabs && <SubTabBar tabs={module.tabs} active={currentTab} onSelect={selectTab} />}
-          <section className={`min-h-0 flex-1 overflow-hidden ${showTabs ? "p-3 md:p-4" : "p-3 md:p-4"}`}>
-            <div className="h-full overflow-hidden rounded-xl border border-[#1f5b9d]/60 bg-[#061226]/65 shadow-[0_0_0_1px_rgba(56,189,248,.08),0_22px_80px_rgba(0,0,0,.38)] backdrop-blur-xl">
-              <div key={`${activeModule}-${currentTab}`} className={`h-full p-4 md:p-5 ${activeModule === "home" ? "overflow-hidden" : "overflow-y-auto"}`}>
+          <section className="flex flex-1 p-3 md:p-4">
+            <div className="min-h-[calc(100dvh-8rem)] w-full overflow-hidden rounded-xl border border-[#1f5b9d]/60 bg-[#061226]/65 shadow-[0_0_0_1px_rgba(56,189,248,.08),0_22px_80px_rgba(0,0,0,.38)] backdrop-blur-xl">
+              <div key={`${activeModule}-${currentTab}`} className="h-full overflow-y-auto p-4 dft-scrollbar md:p-5">
                 <DashboardContent moduleId={activeModule} tab={currentTab} onSelectModule={selectModule} onSelectTab={selectTab} />
               </div>
             </div>
@@ -52,8 +52,8 @@ export function DashboardShell({ initialModule = "home", initialTabIndex }: { in
 
 function TopCommandBar({ onMenu, mobileNavOpen }: { onMenu: () => void; mobileNavOpen: boolean }) {
   return (
-    <header className="relative z-40 h-[92px] shrink-0 border-b border-[#1f5b9d]/60 bg-[#030915]/86 px-4 backdrop-blur-xl">
-      <div className="mx-auto grid h-full max-w-[1900px] grid-cols-[auto_1fr] items-center gap-4">
+    <header className="sticky top-0 z-40 shrink-0 border-b border-[#1f5b9d]/60 bg-[#030915]/86 px-3 py-3 backdrop-blur-xl md:px-4">
+      <div className="mx-auto grid max-w-[1900px] grid-cols-[auto_1fr] items-center gap-3 md:gap-4">
         <div className="flex items-center gap-3">
           <button className="grid h-10 w-10 place-items-center rounded-lg border border-[#2b6cb0]/70 bg-[#07162c] text-slate-200 lg:hidden" onClick={onMenu}>
             {mobileNavOpen ? <X size={19} /> : <Menu size={19} />}
@@ -82,7 +82,7 @@ function SideNavigation({
 }) {
   return (
     <aside
-      className={`fixed z-40 flex h-[calc(100%-92px)] w-64 overflow-y-auto border-r border-[#1f5b9d]/55 bg-[#041025]/95 px-4 py-6 backdrop-blur-xl transition-transform dft-scrollbar lg:static lg:h-full lg:translate-x-0 ${
+      className={`fixed bottom-0 top-[76px] z-40 flex w-64 overflow-y-auto border-r border-[#1f5b9d]/55 bg-[#041025]/95 px-4 py-6 backdrop-blur-xl transition-transform dft-scrollbar lg:sticky lg:top-[89px] lg:h-[calc(100dvh-89px)] lg:translate-x-0 ${
         mobileOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
